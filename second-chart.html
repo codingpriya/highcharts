@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+
+    <style>
+        .container{
+            max-width: 1170px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="myChart"></div>
+    </div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Highcharts.chart('myChart', {
+                chart: {
+                    type: 'areaspline', // default is line chart for which don't need to define this property
+                                        // other values are column, bar, scatter, area, areaspline
+                    zoomType: 'xy' // x, y, xy
+                },
+                credits: {
+                    // enabled: false // to remove the watermark of highcharts
+                    /***** to create your custom credit *****/
+                    text: 'My Custom Credit',
+                    href: 'https://google.com/',
+                    position: {
+                        align: 'left', // center, right
+                        x: 10
+                    },
+                    style: {
+                        fontSize: '16px',
+                        color: 'blue'
+                    }
+                },
+                title: {
+                    text: 'Our Second Chart'
+                },
+                color: ['#FEA47F', '#D6A2E8', '#BDC581', '#8395a7', '#54a0ff'],
+                tooltip: {
+                    animation: false, // default is true
+                    backgroundColor: '#333333',
+                    borderColor: '#f01f11',
+                    borderRadius: 18,
+                    followPointer: true,
+                    style: {
+                        color: 'white'
+                    },
+                    // simple string formatting for tooltip of highcharts
+                    formatter(){
+                        return `<strong>X value</strong> - ${this.x}, <em>Y value</em> - ${this.y}`
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruits Eaten'
+                    }
+                },
+                xAxis: {
+                    categories: ['Oranges', 'Strawberry', 'Pineapple', 'Peaches']
+                },
+                series: [
+                    {
+                        name: 'John',
+                        data: [1, 2, 3, 100, 2, 3, 1, 2, 3]
+                    },
+                    {
+                        name: 'Jackie',
+                        data: [21, 41, 100, 1, 2, 3, 1, 2, 3]
+                    }
+                ]
+            })
+        })
+    </script>
+</body>
+</html>

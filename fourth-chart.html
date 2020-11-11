@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+
+    <style>
+        .container{
+            max-width: 1170px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="myChart"></div>
+    </div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Highcharts.chart('myChart', {
+                chart: {
+                    type: 'line',
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: 'Our Fourth Chart'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruits Eaten'
+                    }
+                },
+                xAxis: {
+                    // categories: ['Strawberry', 'Pineapple', 'Peaches']
+                },
+                series: [
+                    {
+                        // data: [1, 10, 20, 40, 2] // one way to add categories and this data array
+                        // data: [["Jane", 10], ["John", 10], ["Jack", 7]] // second way is to direct use this data array and don't need to use categories
+                        
+                        name: 'Fruits consumption',
+                        // third way to define data like below
+                        data: [
+                            {
+                                name: 'Jack',
+                                y: 10, 
+                                x: 2,
+                                color: 'red'
+                            },
+                            {
+                                name: 'John',
+                                y: 20, 
+                                x: 4,
+                                color: 'green'
+                            }
+                        ]
+                    }
+                ]
+            })
+        })
+    </script>
+</body>
+</html>

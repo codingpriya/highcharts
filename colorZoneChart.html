@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+
+    <style>
+        .container{
+            max-width: 1170px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="myChart"></div>
+    </div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Highcharts.chart('myChart', {
+                chart: {
+                    type: 'line',
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: 'Color zone of data'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruits Eaten'
+                    }
+                },
+                xAxis: {
+                    categories: ['Strawberry', 'Pineapple', 'Peaches']
+                },
+                series: [
+                    {
+                        name: 'Fruits consumption',
+                        data: [-4, -8, 0, 4, 5, 6, 9, 10, 12, 15, 10, 9, 7, -4],
+                        zones: [
+                            {
+                                value: 0, // values which are leas than zero should be of this color (doesn't include 0)
+                                color: '#f7a35c'
+                            },
+                            {
+                                value: 10, // values < 10 should be of this color (doesn't include 10)
+                                color: '#7cb5ec'
+                            },
+                            {
+                                color: '#90ed7d' // remaining values should be of this color
+                            }
+                        ]
+                    }
+                ]
+            })
+        })
+    </script>
+</body>
+</html>

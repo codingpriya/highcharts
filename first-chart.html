@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+
+    <style>
+        .container{
+            max-width: 1170px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="myChart"></div>
+    </div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Highcharts.chart('myChart', {
+                chart: {
+                    type: 'column' // default is line chart for which don't need to define this property
+                                        // other values are column, bar, scatter, area, areaspline
+                },
+                credits: {
+                    enabled: false // to remove the watermark of highcharts
+                },
+                title: {
+                    text: 'Our First Chart'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruits Eaten'
+                    }
+                },
+                xAxis: {
+                    categories: ['Oranges', 'Strawberry', 'Pineapple', 'Peaches']
+                },
+                series: [
+                    {
+                        name: 'John',
+                        data: [1, 2, 3]
+                    },
+                    {
+                        name: 'Jackie',
+                        data: [2, 4, 8]
+                    }
+                ]
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts - Responsive Properties</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+
+    <style>
+        .container{
+            max-width: 1170px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="myChart"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const options = {
+                chart: {
+                    type: 'column',
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: 'CSV Chart'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruits Eaten'
+                    }
+                },
+                responsive: {
+                    rules: [
+                        {
+                            condition: {
+                                maxWidth: 500, // minWidth, minHeight, maxHeight
+                                callback(){
+                                    return true; // if we write "return true" then no condition will apply and chart will look same as other screens
+                                }
+                            },
+                            chartOptions: {
+                                legend: { enabled: false }, // the dots which are displaying below the chart such as Y1, Y2, Y3
+                                yAxis: { title: { text: '' } }
+                            }
+                        }
+                    ]
+                }
+            };
+
+            $.get('csv_data_1.csv', csv => {
+                options.data = {
+                    csv
+                };
+
+                Highcharts.chart('myChart', options);
+            });
+        })
+    </script>
+</body>
+</html>

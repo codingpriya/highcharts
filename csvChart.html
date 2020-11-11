@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highcharts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+
+    <style>
+        .container{
+            max-width: 1170px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="myChart"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+
+            /************* 1st method**************/
+            /*
+            $.get('csv_data_1a.csv', function(csv) {
+                $('#myChart').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    data: { csv },
+                    title: {
+                        text: 'Fruit Consumption'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Units'
+                        }
+                    }
+                });
+            });*/
+
+            const options = {
+                chart: {
+                    type: 'column',
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: 'CSV Chart'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruits Eaten'
+                    }
+                }
+            };
+
+            /************* 2nd method**************/
+            /*
+            $.get('csv_data_1.csv', csv => {
+                options.data = {
+                    csv
+                };
+
+                Highcharts.chart('myChart', options);
+            });*/
+
+            /************* 3rd method**************/
+            fetch('csv_data_2a.csv').then(res => {
+                return res.text();
+            }).then(csv => {
+                options.data = {
+                    csv
+                }
+                Highcharts.chart("myChart", options);
+            })
+
+            /************* 4th method**************/
+            /*options.data = {
+                csvURL: '/csv_data_1.csv', // enter a url like http://loaclhost:8080/data.csv
+                enablePolling: true,
+                dataRefreshRate: 2
+            }
+            Highcharts.chart("myChart", options);*/
+        })
+    </script>
+</body>
+</html>
